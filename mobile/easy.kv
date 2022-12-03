@@ -1,0 +1,812 @@
+# easy.kv file
+
+# Custom Button
+<MButton@Button>:
+    #background_color : 0,0,0,0
+    font_name: "Arial"
+    background_normal: 'button.png'
+    background_down: 'button.png'
+
+# Custom Button
+<MkButton@Button>:
+    background_color : 0,0,0,0
+    font_name: "Arial"
+
+# Custom Label
+<MLabel@Label>:
+    font_name: "Arial"
+
+# Custom textinput
+<MText@TextInput>:
+    background_color: 0,0,0,0
+    foreground_color: 255, 255, 255, 1
+    halign: "center"
+    valign: "center"
+    font_name: "Arial"
+
+# Custom textinput
+<TText@TextInput>:
+    background_color: 0,0,0,0
+    foreground_color: 255, 255, 255, 1
+    halign: "center"
+    valign: "center"
+    font_name: "Arial"  
+
+# Screen_0 : Loading
+<ScreenZero>:
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'        
+    
+    Image:
+        source: 'icon.png'
+        size_hint: 1,0.4
+        pos:5,320
+
+    BoxLayout:
+        orientation: "vertical"
+        
+        MLabel:
+            text: ""
+            size_hint: 1,0.2 
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.5
+            
+            MLabel:
+                text: ""
+        
+            MLabel:
+                id : shint
+                text: root.shint
+            
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: 20
+                padding: 20
+                size_hint: 1,.5
+                
+                MButton:
+                    text: "Login"
+                    on_release: root.manager.current = "screen1"
+                
+                MButton:
+                    text: "Signup"
+                    on_release: root.manager.current = "screen2"
+
+# screen_OTP : OTP
+<OTP>:
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+    
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+        
+        MLabel:
+            text: 'OTP : Enter OTP sent to mail'
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+        
+            MLabel:
+                text: 'OTP : '
+                size_hint: 0.2,1
+                
+            TextInput:
+                id: otp
+                hint_text: 'Enter OTP'
+                halign: "center"
+                valign: "center"
+                size_hint: 0.8,1
+        
+        MLabel:
+            id : serror
+            text: root.serror
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+
+            MButton:
+                text: "Confirm"
+                on_release: root.confirm()
+                        
+            MButton:
+                text: "back"
+                on_release: root.manager.current = "screen0"
+                size_hint: 1,.5
+        
+        MLabel:
+            id : shint
+            text: root.shint
+ 
+# screen_OTPS : OTPS     # for sign in
+<OTPS>:
+    
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+    
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+        
+        MLabel:
+            text: ''
+            #size_hint: 1,0.4
+            
+        
+        MLabel:
+            text: 'OTP : Enter OTP sent to mail'
+            #size_hint: 1,0.2
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+            #size_hint: 1,0.4
+        
+            MLabel:
+                text: 'OTP : '
+                size_hint: 0.3,1
+                
+            TextInput:
+                id: otp
+                hint_text: 'Enter OTP'
+                halign: "center"
+                valign: "center"
+                size_hint: 0.7,1
+        
+        MLabel:
+            id : serror
+            text: root.serror
+            #size_hint: 1,0.1
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+            #size_hint: 1,0.1
+            
+            MButton:
+                text: "back"
+                on_release: root.manager.current = "screen0"
+                #size_hint: 1,.5
+
+            MButton:
+                text: "Confirm"
+                on_release: root.confirm()         
+        
+        MLabel:
+            id : shint
+            text: root.shint
+            #size_hint: 1,0.1
+
+# Screen_1 : Log_in
+<ScreenOne>:
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+    
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+        
+        MLabel:
+            text: ""
+            size_hint: 1,0.4
+    
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.4
+            
+            MText:
+                id: einput
+                hint_text: 'Username'
+                on_text: root.password()
+            
+            MText:
+                id: pinput
+                hint_text:'Password'
+                on_text: root.password()
+                password:True
+        
+        MLabel:
+            id : serror
+            text: root.serror
+            size_hint: 1,0.2
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.2
+            
+            MLabel:
+                id : shint
+                text: root.shint
+                size_hint: 0.8,1
+            
+            MButton:
+                text: "back"
+                on_release: root.manager.current = "screen0"
+                size_hint: 1,.5
+
+# Screen_2 : Sign_up
+<ScreenTwo>:
+    
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+    
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+        
+        MLabel:
+            text: ""
+            size_hint: 1,0.3
+        
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.4
+            
+            MText:
+                id: uinput
+                hint_text: 'Username'
+                #size_hint: 0.4,1
+            
+            MText:
+                id: einput
+                hint_text: 'Email'
+                on_text: root.test()
+                #size_hint: 0.4,1
+            
+            MText:
+                id: pinput
+                hint_text:'Password'
+                password:True
+                #size_hint: 0.4,1
+                
+            MButton:
+                text: "confirm"
+                on_release: root.password()
+                #size_hint: 0.2,1
+        
+        MLabel:
+            id : serror
+            text: root.serror
+            size_hint: 1,0.1
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.2
+            
+            MLabel:
+                id : shint
+                text: root.shint
+                size_hint: 0.8,1
+            
+            MButton:
+                text: "back"
+                on_release: root.manager.current = "screen0"
+                size_hint: 1,.5
+          
+         
+
+# Screen_3 : Menu - focus / task
+<ScreenThree>:
+    
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bgu.png'
+            
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+            size_hint: 1,.1
+            
+            MkButton:
+                id : menu
+                text: "Menu"
+                on_release: root.manager.current = "screen9"
+                
+            MLabel:
+                text: ""
+            
+            MkButton:
+                id : profile
+                text: "Profile"
+                on_release: root.manager.current = "screen6"
+        
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            size_hint: 1,.7
+            
+            MkButton:
+                text: "Focus"
+                on_release: root.manager.current = "screen4"
+            
+            MkButton:
+                text: "Tasks"
+                on_release: root.manager.current = "screen5"
+        
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: 1,.08
+
+            Button:
+                #text: "Home"
+                font_name: "Arial"
+                background_color : 0,0,0,0
+                background_normal: 'home.png'
+                background_down: 'home.png'
+                #size_hint: 1,0.5
+                on_release: root.manager.current = "screen3"
+                
+            Button:
+                #text: "DM"
+                font_name: "Arial"
+                background_color : 0,0,0,0
+                background_normal: 'location.png'
+                background_down: 'location.png'
+                #size_hint: 1,0.5
+                #on_release: root.manager.current = "screen5"
+                    
+            Button:
+                #text: "Comm"
+                font_name: "Arial"
+                background_color : 0,0,0,0
+                background_normal: 'community.png'
+                background_down: 'community.png'
+                #size_hint: 1,0.5
+                on_release: root.manager.current = "screen7"
+                    
+            Button:
+                #text: "Cart"
+                font_name: "Arial"
+                background_color : 0,0,0,0
+                background_normal: 'cart.png'
+                background_down: 'cart.png'
+                #size_hint: 1,0.5
+                #on_release: root.manager.current = "screen5"
+                
+            Button:
+                #text: "Settings"
+                font_name: "Arial"
+                background_color : 0,0,0,0
+                background_normal: 'settings.png'
+                background_down: 'settings.png'
+                #size_hint: 1,0.5
+                on_release: root.manager.current = "screen8"                
+
+# Screen_4 : Focus 
+<ScreenFour>:
+    
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+    
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+        
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.9
+            
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: 20
+                padding: 20
+                
+                MkButton:
+                    text: "lofi"
+                    on_release: root.playl()
+                
+                MkButton:
+                    text: "rain1"
+                    on_release: root.playr()
+                
+                MkButton:
+                    text: "rain2"
+                    on_release: root.playrr()
+            
+            MkButton:
+                text: "Pause"
+                on_release: root.play()
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.1
+            
+            MLabel:
+                id : shint
+                text: root.shint
+                size_hint: 0.8,1
+            
+            MkButton:
+                text: "back"
+                on_release: root.manager.current = "screen3"
+                size_hint: 0.2,1     
+
+
+# Screen_5 : Task
+<ScreenFive>:
+    
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+    
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+        
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.9
+            
+            MLabel:
+                text: "Tasks"
+            
+            TText:
+                id: o1
+                hint_text: '+'
+                halign: "center"
+                valign: "center"    
+            
+            TText:
+                id: o2
+                hint_text: '+'
+                halign: "center"
+                valign: "center"  
+            
+            TText:
+                id: o3
+                hint_text: '+'
+                halign: "center"
+                valign: "center"   
+            
+            TText:
+                id: o4
+                hint_text: '+'
+                halign: "center"
+                valign: "center"  
+            
+            MButton:
+                text: "set"
+                on_release: root.sets()
+                size_hint: 0.2,1       
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.1
+            
+            MLabel:
+                id : shint
+                text: root.shint
+                size_hint: 0.8,1
+            
+            MkButton:
+                text: "back"
+                on_release: root.manager.current = "screen3"
+                size_hint: 0.5,1     
+
+# Screen_6 : Profile [Avatar,Pet,Reward points,logout]
+<ScreenSix>:
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bgu2.png'
+    
+    MLabel:
+        text: ""
+    
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+        
+        MLabel:
+            text: "Profile"
+        
+        MLabel:
+            text: ""
+        
+        MLabel:
+            text: ""
+        
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.9
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.1
+            
+            MLabel:
+                id : shint
+                text: root.shint
+                size_hint: 0.8,1
+            
+            MkButton:
+                text: "back"
+                on_release: root.manager.current = "screen3"
+                size_hint: 0.2,1     
+
+
+# Screen_7 : Community [page]
+<ScreenSeven>:
+    
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+    
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+        
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.9
+            
+            MLabel:
+                text: "Looks Empty here!"
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.1
+            
+            MLabel:
+                id : shint
+                text: root.shint
+                size_hint: 0.8,1
+            
+            MkButton:
+                text: "back"
+                on_release: root.manager.current = "screen3"
+                size_hint: 0.2,1     
+
+
+# Screen_8 : Settings [Theme,sounds,about us,about project]
+<ScreenEight>:
+    
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+    
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+        
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.9
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.1
+            
+            MLabel:
+                id : shint
+                text: root.shint
+                size_hint: 0.8,1
+            
+            MkButton:
+                text: "back"
+                on_release: root.manager.current = "screen3"
+                size_hint: 0.2,1     
+
+
+# Screen_9 : Reward
+<ScreenNine>:
+    
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'bg.png'
+     
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+        
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.9
+        
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: 20
+            padding: 20
+            size_hint: 1,0.1
+            
+            MLabel:
+                id : shint
+                text: root.shint
+                size_hint: 0.8,1
+            
+            MkButton:
+                text: "back"
+                on_release: root.manager.current = "screen3"
+                size_hint: 0.2,1     
+
+        
+# Screens 
+
+# Screen_0 : Loading
+# Screen_1 : Log_in
+# Screen_2 : Sign_up
+# Screen_3 : Menu - focus / task
+# Screen_4 : Focus 
+# Screen_5 : Task
+# Screen_6 : Profile [Avatar,Pet,Reward points,logout]
+# Screen_7 : Community [page]
+# Screen_8 : Settings [Theme,sounds,about us,about project]
+# Screen_9 : Reward
+
+<Manager>:
+    id: screen_manager
+
+    screen_zero: screen_zero
+    screen_one: screen_one
+    screen_two: screen_two
+    screen_three: screen_three
+    screen_four: screen_four
+    screen_five: screen_five
+    screen_six: screen_six
+    screen_seven: screen_seven
+    screen_eight: screen_eight
+    screen_nine: screen_nine
+    
+    # Screen_0 : Loading
+    ScreenZero:
+        id: screen_zero
+        name: "screen0"
+        manager: screen_manager
+    
+    # Screen_1 : Log_in
+    ScreenOne:
+        id: screen_one
+        name: "screen1"
+        manager: screen_manager
+        
+    # Screen_2 : Sign_up
+    ScreenTwo:
+        id: screen_two
+        name: "screen2"
+        manager: screen_manager
+        
+    # Screen_3 : Menu - focus / task
+    ScreenThree:
+        id: screen_three
+        name: "screen3"
+        manager: screen_manager
+    
+    # Screen_4 : Focus 
+    ScreenFour:
+        id: screen_four
+        name: "screen4"
+        manager: screen_manager
+    
+    # Screen_5 : Task
+    ScreenFive:
+        id: screen_five
+        name: "screen5"
+        manager: screen_manager
+        
+    # Screen_6 : Profile [Avatar,Pet,Reward points,logout]
+    ScreenSix:
+        id: screen_six
+        name: "screen6"
+        manager: screen_manager
+    
+    
+    # Screen_7 : Community [page]
+    ScreenSeven:
+        id: screen_seven
+        name: "screen7"
+        manager: screen_manager    
+    
+    # Screen_8 : Settings [Theme,sounds,about us,about project] 
+    ScreenEight:
+        id: screen_eight
+        name: "screen8"
+        manager: screen_manager
+    
+    # Screen_9 : Reward
+    ScreenEight:
+        id: screen_nine
+        name: "screen9"
+        manager: screen_manager
+    
+    # screen_OTP : OTP
+    OTP:
+        id: screen_OTP
+        name: "OTP"
+        manager: screen_manager
+    
+    # screen_OTPS : OTPS
+    OTPS:
+        id: screen_OTPS
+        name: "OTPS"
+        manager: screen_manager
+        
